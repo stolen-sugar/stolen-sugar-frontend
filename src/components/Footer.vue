@@ -1,12 +1,27 @@
 <template>
   <footer class="footer">
-    <div class="content has-text-centered">
+    <p class="has-text has-text-centered">
       <img
         class="logo-text"
         alt="stolen sugar logo"
         src="../assets/logo-text.svg"
       />
-      <p>
+    </p>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content">
+          <button class="button is-danger">
+            hotkeys
+            <kbd
+              class="action-group-high__action-hotkey"
+              title="Keyboard shortcut: 7"
+              >7</kbd
+            >
+          </button>
+        </div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
         <a href="https://github.com/stolen-sugar">
           <img
             id="github-logo"
@@ -19,17 +34,7 @@
             >5</kbd
           >
         </a>
-      </p>
-    </div>
-    <div class="content has-text-right">
-      <button class="button is-danger">
-        alphabet
-        <kbd
-          class="action-group-high__action-hotkey"
-          title="Keyboard shortcut: 7"
-          >7</kbd
-        >
-      </button>
+      </div>
     </div>
   </footer>
 </template>
