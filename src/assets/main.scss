@@ -1,0 +1,83 @@
+// Customizations Here (Optional)
+
+// Bulma Import
+$navbar-item-color: #fff;
+$navbar-item-hover-color: #000;
+$navbar-item-hover-background-color: transparnet;
+$navbar-background-color: #b22222;
+$footer-background-color: #000;
+$navbar-padding-horizontal: 4em;
+$button-hover-color: #fff;
+$button-active-color: #fff;
+$button-focus-color: #fff;
+$primary: #000;
+$danger: #b22222;
+$light: #fff;
+@import "~bulma";
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text {
+  height: 50px;
+  width: auto;
+}
+
+footer {
+  a {
+    color: white;
+  }
+}
+
+.navbar {
+  // background: unset;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 4em;
+  padding-left: 4em;
+}
+
+.navbar-item img {
+  max-height: unset;
+}
+
+kbd {
+  color: #000;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0.15em 0.3em;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: var(--font-family--mono);
+  border-radius: 15px;
+  opacity: 0.8;
+}
+
+.action-group__action-hotkey,
+.action-group-inherit__action-hotkey {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: #fff;
+}
+
+.action-group-inherit__action-hotkey {
+  position: inherit;
+}
+
+#github-logo {
+  height: 30px;
+  width: auto;
+}
+
+.action-group-high__action-hotkey {
+  position: absolute;
+  top: 0.01em;
+  right: 0.01em;
+  background: #fff;
+}
