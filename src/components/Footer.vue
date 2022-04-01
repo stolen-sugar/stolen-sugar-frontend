@@ -10,7 +10,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <div class="content">
-          <button class="button is-danger">
+          <button class="button is-white danger-white">
             hotkeys
             <kbd
               class="action-group-high__action-hotkey"
@@ -48,5 +48,12 @@ export default {
 <style>
 .footer {
   background: black !important;
+}
+
+.danger-white {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  text-decoration: underline;
 }
 </style>
