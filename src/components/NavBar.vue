@@ -65,4 +65,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.is-primary {
+  background: transparent !important;
+}
+
+.is-primary:active {
+  background: black !important;
+}
+</style>
