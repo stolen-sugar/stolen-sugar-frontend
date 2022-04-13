@@ -20,40 +20,25 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">
-          Explore
+        <a href="/" class="navbar-item" id="home-page-link">
+          Home
 
-          <kbd class="action-group__action-hotkey" title="Keyboard shortcut: 1"
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="action-group__action-hotkey"
+            title="Keyboard shortcut: 1"
             >1</kbd
           >
         </a>
-        <a class="navbar-item">
-          Sync
-          <kbd class="action-group__action-hotkey" title="Keyboard shortcut: 2"
+        <a href="explore" class="navbar-item" id="explore-page-link">
+          Explore
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="action-group__action-hotkey"
+            title="Keyboard shortcut: 2"
             >2</kbd
           >
         </a>
-        <a class="navbar-item">
-          Flashcards
-          <kbd class="action-group__action-hotkey" title="Keyboard shortcut: 3"
-            >3</kbd
-          >
-        </a>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              Switch to Cursorless
-              <kbd
-                class="action-group-high__action-hotkey"
-                title="Keyboard shortcut: 4"
-                >4</kbd
-              >
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
@@ -62,6 +47,30 @@
 <script>
 export default {
   name: "NavBar",
+  methods: {
+    goToHome() {
+      document.getElementById("home-page-link").click();
+    },
+    goToExplore() {
+      document.getElementById("explore-page-link").click();
+    },
+  },
+  computed: {
+    hideAllhotkeys() {
+      return this.$root.$data.shared.keysHidden();
+    },
+  },
+  mounted() {
+    var self = this;
+    document.body.addEventListener("keyup", function (event) {
+      if (self.$root.$data.shared.keysHidden()) return;
+      if (event.key == 1) {
+        self.goToHome();
+      } else if (event.key == 2) {
+        self.goToExplore();
+      }
+    });
+  },
 };
 </script>
 

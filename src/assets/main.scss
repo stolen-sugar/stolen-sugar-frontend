@@ -1,12 +1,10 @@
 // Customizations Here (Optional)
 
 // Bulma Import
-$footer-padding: 2em 1.5em 2em;
-$navbar-item-color: #fff;
-$navbar-item-hover-color: #000;
-$navbar-item-hover-background-color: transparnet;
-$navbar-background-color: #b22222;
-$footer-background-color: #000;
+$footer-padding: 0em;
+$navbar-item-hover-color: #fff;
+$navbar-item-hover-background-color: #3e8ed0;
+$footer-background-color: #3e8ed0;
 $navbar-padding-horizontal: 4em;
 $button-hover-color: #fff;
 $button-active-color: #fff;
@@ -14,6 +12,8 @@ $button-focus-color: #fff;
 $primary: #000;
 $danger: #b22222;
 $light: #fff;
+$info: #3e8ed0;
+$box-shadow: 0 0.5em 1em -0.125em #3e8ed0, 0 0px 0 1px #3e8ed0;
 @import "~bulma";
 
 .logo {
@@ -63,7 +63,7 @@ kbd {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
-  background: #fff;
+  background: #dfdfdf;
 }
 
 .action-group-inherit__action-hotkey {
@@ -79,5 +79,9 @@ kbd {
   position: absolute;
   top: 0.01em;
   right: 0.01em;
-  background: #fff;
+  background: #dfdfdf;
+}
+
+.container {
+    margin-top: 2em;
 }

@@ -2,23 +2,20 @@
   <div id="app">
     <div class="base">
       <NavBar />
-      <HelloWorld msg="Welcome to Your Vue.js App" />
+      <slot></slot>
     </div>
     <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Footer from "./components/Footer.vue";
-import NavBar from "./components/NavBar.vue";
+import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
-  name: "App",
   components: {
-    HelloWorld,
-    Footer,
     NavBar,
+    Footer,
   },
 };
 </script>
@@ -30,7 +27,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
 html,
 body,
 #app {
