@@ -4,7 +4,6 @@
       <div class="column is-narrow">
         <button
           class="button is-info is-outlined has-text-centered"
-          ref="searchByFile"
           @click="getIds"
         >
           Link knausj_talon fork
@@ -19,7 +18,6 @@
       <div class="column is-narrow">
         <button
           class="button is-info is-outlined has-text-centered"
-          ref="searchByFile"
           @click="useKnausjTalon"
         >
           Use default knausj_talon
@@ -45,7 +43,7 @@
                   class="input"
                   type="text"
                   placeholder="knausj85"
-                  ref="textField"
+                  ref="textNameField"
                   @focusout="enableHotkeys()"
                   @focus="disableHotkeys()"
                   tabindex="0"
@@ -63,11 +61,7 @@
         </div>
       </div>
       <div class="column is-narrow">
-        <button
-          class="button is-info is-outlined"
-          ref="searchByFile"
-          @click="linkUserRepo"
-        >
+        <button class="button is-info is-outlined" @click="linkUserRepo">
           search users
           <kbd
             v-show="!hideAllhotkeys"
@@ -179,6 +173,32 @@ export default {
           console.log("Fetch Error :-S", err);
         });
     },
+    focusUsernameInput() {
+      this.$refs.textNameField.focus();
+      this.$root.$data.shared.hideHotKeys = true;
+    },
+  },
+  mounted() {
+    var self = this;
+    document.body.addEventListener("keyup", function (event) {
+      if (self.$root.$data.shared.keysHidden()) return;
+      switch (event.key) {
+        case "g":
+          self.getIds();
+          break;
+        case "m":
+          self.useKnausjTalon();
+          break;
+        case "h":
+          self.focusUsernameInput();
+          break;
+        case "l":
+          self.linkUserRepo();
+          break;
+        default:
+          break;
+      }
+    });
   },
 };
 </script>
