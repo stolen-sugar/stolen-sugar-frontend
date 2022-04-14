@@ -94,57 +94,6 @@
             >
           </button>
         </div>
-        <div class="column">
-          <button
-            v-if="contextList.length > 0"
-            v-on:click="activateModal"
-            class="button is-info is-outlined"
-          >
-            select context
-            <kbd
-              v-show="!hideAllhotkeys"
-              class="action-group-high__action-hotkey hotkey-dark"
-              title="Keyboard shortcut: C"
-              >C</kbd
-            >
-          </button>
-          <div class="modal" v-bind:class="{ 'is-active': showModal }">
-            <div class="modal-background" v-on:click="deactivateModal"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Select context</p>
-              </header>
-              <section class="modal-card-body">
-                <div class="buttons">
-                  <button
-                    class="button is-link is-outlined"
-                    v-for="(context, index) in contextList"
-                    :key="index"
-                  >
-                    {{ context }}
-                    <kbd
-                      v-show="!hideAllhotkeys"
-                      class="action-group-high__action-hotkey hotkey-dark"
-                      title="Keyboard shortcut: A"
-                      >A</kbd
-                    >
-                  </button>
-                </div>
-              </section>
-              <footer class="modal-card-foot">
-                <button class="button is-info" v-on:click="deactivateModal">
-                  Cancel
-                  <kbd
-                    v-show="!hideAllhotkeys"
-                    class="action-group-high__action-hotkey hotkey-dark"
-                    title="Keyboard shortcut: Z"
-                    >Z</kbd
-                  >
-                </button>
-              </footer>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div>
@@ -178,7 +127,6 @@ export default {
       appTarget: "talon",
       includeEmptyPhrases: false,
       fileTarget: null,
-      contextTarget: null,
       actionNameTarget: null,
       showModal: false,
       hotkeyHideLevel: 0,
@@ -194,12 +142,6 @@ export default {
   methods: {
     switchActiveTab(app) {
       this.activeTab = app;
-    },
-    activateModal() {
-      this.showModal = true;
-    },
-    deactivateModal() {
-      this.showModal = false;
     },
     focusFileInput() {
       this.$refs.textField.focus();
@@ -260,21 +202,12 @@ export default {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
       if (self.$root.$data.shared.keysHidden()) return;
-      if (event.key == "c") {
-        self.activateModal();
-      }
       switch (event.key) {
         case "a":
           self.focusFileInput(self);
           break;
         case "b":
           self.searchByFile();
-          break;
-        case "c":
-          self.activateModal();
-          break;
-        case "z":
-          self.deactivateModal();
           break;
         case "e":
           self.switchActiveTab("cursorless");
