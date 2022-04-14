@@ -1,6 +1,7 @@
 <template>
   <MainLayout>
-    <div class="container">
+    <SelectRepo v-if="!$cookies.get('ss-id')"></SelectRepo>
+    <div v-else class="container">
       <div class="columns is-vcentered is-centered has-text-centered">
         <div class="column">
           <h1 class="title">Explore spoken phrases</h1>
@@ -68,9 +69,6 @@
                     v-show="!hideAllhotkeys"
                     class="action-group__action-hotkey hotkey-dark"
                     title="Keyboard shortcut: A"
-                    v-bind:class="{
-                      'hide-hotkey': keysHidden(this),
-                    }"
                     >A</kbd
                   >
                 </p>
@@ -114,6 +112,7 @@
 import MainLayout from "@/layouts/MainLayout.vue";
 import SpokenPhraseGroupList from "@/components/SpokenPhraseGroupList.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import SelectRepo from "@/components/SelectRepo.vue";
 
 export default {
   name: "ExploreAlternates",
@@ -121,6 +120,7 @@ export default {
     MainLayout,
     SpokenPhraseGroupList,
     PulseLoader,
+    SelectRepo,
   },
   data: function () {
     return {
@@ -153,9 +153,6 @@ export default {
     enableHotkeys() {
       this.$root.$data.shared.hideHotKeys = false;
     },
-    keysHidden() {
-      this.$root.$data.shared.keysHidden();
-    },
     toggleEmptyPhrases() {
       this.$refs.emptyPhrases.click();
     },
@@ -175,9 +172,6 @@ export default {
             );
             return;
           }
-
-          // Examine the text in the response
-          // code/keys.py
           response.json().then(function (data) {
             self.spokenFormGroups = data.spokenFormGroups;
             let context = Object.keys(self.spokenFormGroups);
@@ -195,7 +189,10 @@ export default {
   },
   computed: {
     hideAllhotkeys() {
-      return this.$root.$data.shared.keysHidden();
+      return (
+        this.$root.$data.shared.keysHidden() ||
+        this.$cookies.isKey("hideAllHotkeys")
+      );
     },
   },
   mounted() {
@@ -240,7 +237,8 @@ export default {
   color: #000;
 }
 
-.hide-hotkey {
-  display: none;
+.field-label.is-normal {
+  padding-top: 0.5em;
+  min-width: 9em;
 }
 </style>

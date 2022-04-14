@@ -7,6 +7,7 @@ import Home from "./pages/Home.vue";
 import NotFound from "./pages/NotFound.vue";
 import ExploreAlternatives from "./pages/Explore.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import VueCookies from "vue-cookies";
 
 const routes = {
   "/": Home,
@@ -15,12 +16,14 @@ const routes = {
 
 const shared = {
   hideHotKeys: false,
-  alwaysHideHotkeys: false,
   keysHidden() {
-    return this.hideHotKeys || this.alwaysHideHotkeys;
+    return this.hideHotKeys;
   },
   activeGroup: null,
 };
+
+Vue.use(VueCookies);
+Vue.$cookies.config("30d");
 
 new Vue({
   el: "#app",

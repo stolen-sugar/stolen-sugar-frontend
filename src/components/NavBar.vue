@@ -57,13 +57,16 @@ export default {
   },
   computed: {
     hideAllhotkeys() {
-      return this.$root.$data.shared.keysHidden();
+      return (
+        this.$root.$data.shared.keysHidden() ||
+        this.$cookies.isKey("hideAllHotkeys")
+      );
     },
   },
   mounted() {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
-      if (self.$root.$data.shared.keysHidden()) return;
+      if (self.hideAllhotkeys) return;
       if (event.key == 1) {
         self.goToHome();
       } else if (event.key == 2) {

@@ -11,7 +11,12 @@
           href="https://github.com/knausj85/knausj_talon"
           id="knausj-talon-repo-link"
           >knausj_talon
-          <kbd class="hotkey-dark" title="Keyboard shortcut: A">A</kbd></a
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: A"
+            >A</kbd
+          ></a
         >
         and make them available to be searched by either the default spoken
         phrase or the file and context. Cursorless spoken phrases are less
@@ -25,7 +30,12 @@
           href="https://github.com/daslater"
           id="david-slater-github-link"
           >David Slater
-          <kbd class="hotkey-dark" title="Keyboard shortcut: B">B</kbd></a
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: B"
+            >B</kbd
+          ></a
         >,
         <a
           class="ss-team"
@@ -33,7 +43,12 @@
           id="evan-pollak-github-link"
         >
           Evan Pollak
-          <kbd class="hotkey-dark" title="Keyboard shortcut: G">g</kbd>
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: G"
+            >g</kbd
+          >
         </a>
         and
         <a
@@ -41,7 +56,12 @@
           href="https://github.com/RonWalker22"
           id="ronald-walker-github-link"
           >Ron Walker
-          <kbd class="hotkey-dark" title="Keyboard shortcut: C">C</kbd></a
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: C"
+            >C</kbd
+          ></a
         >.
       </p>
       <h2 class="subtitle">Website Voice Navigation</h2>
@@ -63,13 +83,23 @@
           href="https://github.com/knausj85/knausj_talon/network/members"
           id="knausj-talon-repo-link"
           >knausj_talon fork
-          <kbd class="hotkey-dark" title="Keyboard shortcut: D">D </kbd> </a
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: D"
+            >D
+          </kbd> </a
         >, otherwise we don't know it exists. If you have a
         <a
           href="https://github.com/knausj85/knausj_talon/network/members"
           id="knausj-talon-repo-link"
           >knausj_talon fork
-          <kbd class="hotkey-dark" title="Keyboard shortcut: E">E</kbd></a
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: E"
+            >E</kbd
+          ></a
         >, you are also on our cursorless search list. For cursorless we search
         through your github repos for a repository named "cursorless-settings".
         We also look within the top level of your talon fork for a folder named
@@ -79,7 +109,12 @@
           id="cursorless-settings-directory-change-link"
         >
           changed your cursorless settings directory
-          <kbd class="hotkey-dark" title="Keyboard shortcut: F">F</kbd>
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: F"
+            >F</kbd
+          >
         </a>
         to that location.
       </p>
@@ -94,6 +129,19 @@ export default {
   name: "HelloWorld",
   components: {
     MainLayout,
+  },
+  methods: {
+    setCookie() {
+      this.$cookies.set("ss-id", "gowtham");
+    },
+  },
+  computed: {
+    hideAllhotkeys() {
+      return (
+        this.$root.$data.shared.keysHidden() ||
+        this.$cookies.isKey("hideAllHotkeys")
+      );
+    },
   },
   mounted() {
     document.body.addEventListener("keyup", function (event) {

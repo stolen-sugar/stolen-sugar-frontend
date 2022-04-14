@@ -90,7 +90,7 @@
             </div>
             <div class="column is-narrow">
               <button
-                v-if="!$root.$data.shared.alwaysHideHotkeys"
+                v-if="!hideAllhotkeys"
                 class="button is-danger alwaysToggle"
                 v-on:click="disableAllHotkeys"
               >
@@ -149,10 +149,12 @@ export default {
   },
   methods: {
     disableAllHotkeys() {
-      this.$root.$data.shared.alwaysHideHotkeys = true;
+      this.$cookies.set("hideAllHotkeys", true);
+      window.location.reload();
     },
     enableAllHotkeys() {
-      this.$root.$data.shared.alwaysHideHotkeys = false;
+      this.$cookies.remove("hideAllHotkeys");
+      window.location.reload();
     },
     activateFooterModal() {
       this.showFooterModal = true;
@@ -166,13 +168,16 @@ export default {
   },
   computed: {
     hideAllhotkeys() {
-      return this.$root.$data.shared.keysHidden();
+      return (
+        this.$root.$data.shared.keysHidden() ||
+        this.$cookies.isKey("hideAllHotkeys")
+      );
     },
   },
   mounted() {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
-      if (self.$root.$data.shared.keysHidden()) return;
+      if (self.hideAllhotkeys) return;
       switch (event.key) {
         case "7":
           self.activateFooterModal();
