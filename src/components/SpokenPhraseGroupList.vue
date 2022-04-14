@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="columns is-multiline is-centered">
+    <div class="columns is-multiline is-centered has-text-centered">
       <div
-        class="column is-narrow"
+        class="column is-one-third-desktop is-half"
         v-for="(key, index) in formattedGroups"
         :key="index"
       >
@@ -24,15 +24,6 @@ export default {
   },
   computed: {
     formattedGroups: function () {
-      // this.group.map(function name(item) {
-      //   return item.alternatives;
-      // });
-
-      // let groups = Object.values(this.list);
-
-      console.log(Object.values(this.list));
-      console.log("hit groups");
-
       return Object.values(this.list).sort(function name(a, b) {
         return b.length - a.length;
       });

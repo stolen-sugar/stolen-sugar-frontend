@@ -6,6 +6,7 @@ Vue.config.productionTip = false;
 import Home from "./pages/Home.vue";
 import NotFound from "./pages/NotFound.vue";
 import ExploreAlternatives from "./pages/Explore.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 const routes = {
   "/": Home,
@@ -26,6 +27,9 @@ new Vue({
   data: {
     currentRoute: window.location.pathname,
     shared,
+  },
+  components: {
+    PulseLoader,
   },
   computed: {
     ViewComponent() {

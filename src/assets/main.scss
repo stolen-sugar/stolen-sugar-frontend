@@ -85,3 +85,17 @@ kbd {
 .container {
     margin-top: 2em;
 }
+
+.button.is-loading::after, .loader, .select.is-loading::after, .control.is-loading::after {
+    border-left-color: #3e8ed0;
+    border-bottom-color: #3e8ed0;
+    height: 5em;
+    position: relative;
+    width: 5em;
+    display: inline-block;
+    margin-bottom: 5em;
+}
+
+.v-spinner {
+    margin-bottom: 5em;
+}

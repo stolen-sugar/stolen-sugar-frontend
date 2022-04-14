@@ -148,6 +148,14 @@
       </div>
     </div>
     <div>
+      <div class="has-text-centered">
+        <pulse-loader
+          v-if="state === 'loading'"
+          class="loader-rise has-text-centered"
+          color="#3e8ed0"
+        >
+        </pulse-loader>
+      </div>
       <SpokenPhraseGroupList :list="spokenFormGroups"></SpokenPhraseGroupList>
     </div>
   </MainLayout>
@@ -156,12 +164,14 @@
 <script>
 import MainLayout from "@/layouts/MainLayout.vue";
 import SpokenPhraseGroupList from "@/components/SpokenPhraseGroupList.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   name: "ExploreAlternates",
   components: {
     MainLayout,
     SpokenPhraseGroupList,
+    PulseLoader,
   },
   data: function () {
     return {
@@ -178,6 +188,7 @@ export default {
       activeTab: "talon",
       spokenFormGroups: {},
       contextList: [],
+      state: "done",
     };
   },
   methods: {
@@ -211,6 +222,7 @@ export default {
     },
     getSpokenFormByFile() {
       if (this.fileTarget === null) return;
+      this.state = "loading";
       let url = this.spokenFormByFileUrl + this.fileTarget;
       let self = this;
       fetch(url)
@@ -227,13 +239,14 @@ export default {
           response.json().then(function (data) {
             self.spokenFormGroups = data.spokenFormGroups;
             let context = Object.keys(self.spokenFormGroups);
-
             for (let index = 0; index < context.length; index++) {
               self.contextList[index] = context[index];
             }
+            self.state = "done";
           });
         })
         .catch(function (err) {
+          self.state = "done";
           console.log("Fetch Error :-S", err);
         });
     },
@@ -283,7 +296,7 @@ export default {
   margin-top: 1em;
 }
 .explorer-search-container {
-  margin: 3em !important;
+  margin: 2em !important;
 }
 .file-label {
   min-width: 5em;
