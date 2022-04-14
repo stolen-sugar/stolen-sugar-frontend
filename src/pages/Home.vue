@@ -18,10 +18,9 @@
             >A</kbd
           ></a
         >
-        and make them available to be searched by either the default spoken
-        phrase or the file and context. Cursorless spoken phrases are less
-        available on github, so please consider donating your repository so more
-        people can benefit.
+        and make them available to be searched by file. Cursorless spoken
+        phrases are less available on github, so please consider donating your
+        repository so more people can benefit.
       </p>
       <p class="content">
         Stolen Sugar was created by
