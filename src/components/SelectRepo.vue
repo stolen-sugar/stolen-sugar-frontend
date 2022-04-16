@@ -102,7 +102,7 @@ export default {
   data: function () {
     return {
       ssId: null,
-      usersUrl: "https://stolen-sugar.herokuapp.com/users",
+      usersUrl: "http://ss117-726630833.us-east-2.elb.amazonaws.com/users",
       state: "done",
       users: [],
       userName: "",

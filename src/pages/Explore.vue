@@ -131,8 +131,7 @@ export default {
       showModal: false,
       hotkeyHideLevel: 0,
       spokenFormByFileUrl:
-        "https://stolen-sugar.herokuapp.com/spokenform?file=",
-      spokenFormByNameUrl: "http://localhost:8080/spokenformbyname?name=",
+        "http://ss117-726630833.us-east-2.elb.amazonaws.com/spokenform?file=",
       activeTab: "talon",
       spokenFormGroups: {},
       contextList: [],
