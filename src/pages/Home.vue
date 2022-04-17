@@ -191,8 +191,8 @@ li {
 }
 
 .container {
-  padding-right: 200px;
-  padding-left: 200px;
+  padding-right: 2em;
+  padding-left: 2em;
   margin-top: 3em !important;
 }
 
