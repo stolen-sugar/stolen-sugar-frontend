@@ -2,7 +2,7 @@
   <MainLayout>
     <div class="container">
       <h1 class="title has-text-centered">
-        Discover Alternative Spoken Phrases for Talon and Cursorless
+        Discover Alternative Spoken Phrases for Talon
       </h1>
       <h2 class="subtitle about">About</h2>
       <p class="content">
