@@ -17,6 +17,12 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
+        <kbd
+          v-show="!hideAllhotkeys"
+          class="action-group-high__action-hotkey"
+          title="Keyboard shortcut: 3"
+          >3</kbd
+        >
       </a>
     </div>
 
@@ -85,6 +91,8 @@ export default {
         self.goToHome();
       } else if (event.key == 2) {
         self.goToExplore();
+      } else if (event.key == 3) {
+        self.toggleBurger();
       }
     });
   },
