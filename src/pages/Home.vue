@@ -6,7 +6,7 @@
       </h1>
       <h2 class="subtitle about">About</h2>
       <p class="content">
-        We steal spoken phrases from the various forks of
+        We steal custom spoken phrases from the various forks of
         <a
           href="https://github.com/knausj85/knausj_talon"
           id="knausj-talon-repo-link"
@@ -18,9 +18,7 @@
             >A</kbd
           ></a
         >
-        and make them available to be searched by file. Cursorless spoken
-        phrases are less available on github, so please consider donating your
-        repository so more people can benefit.
+        and make them available to be searched by file.
       </p>
       <p class="content">
         Stolen Sugar was created by
@@ -65,19 +63,19 @@
       </p>
       <h2 class="subtitle">Website Voice Navigation</h2>
       <p class="content">
-        You can easily navigate this website with your voice by using the
-        denoted hotkeys. Each hotkey is either a number or letter. If you have
-        not mastered the talon alphabet yet, just say "seven" to look at the
+        You can easily navigate the website with your voice by using the denoted
+        hotkeys. Each hotkey is either a number or letter. If you have not
+        mastered the talon alphabet yet, just say "seven" to look at the
         cheatsheet. After you link your repository, the entire website,
         including the cheatsheet, is mapped to your custom spoken phrases.
       </p>
       <p class="content">
         When you focus on an input element like "File Path", hotkeys are
-        temporarily disabled.
+        temporarily disabled. Escape or tab to exit input element.
       </p>
       <h2 class="subtitle">Repository Search Area</h2>
       <p class="content">
-        We execpt your talon repository to be a publicly available
+        We expect your talon repository to be a publicly available
         <a
           href="https://github.com/knausj85/knausj_talon/network/members"
           id="knausj-talon-repo-link"
@@ -88,34 +86,9 @@
             title="Keyboard shortcut: D"
             >D
           </kbd> </a
-        >, otherwise we don't know it exists. If you have a
-        <a
-          href="https://github.com/knausj85/knausj_talon/network/members"
-          id="knausj-talon-repo-link"
-          >knausj_talon fork
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: E"
-            >E</kbd
-          ></a
-        >, you are also on our cursorless search list. For cursorless we search
-        through your github repos for a repository named "cursorless-settings".
-        We also look within the top level of your talon fork for a folder named
-        "cursorless-settings" on the chance you
-        <a
-          href="https://github.com/RonWalker22/ron_talon/commit/bc721dbf739082aab76e5d53f564f835914bf720#diff-4b1f36608ed5ed27d584be1c3e7444603731bb53d986fb62ee1f1ad096432190R53"
-          id="cursorless-settings-directory-change-link"
-        >
-          changed your cursorless settings directory
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: F"
-            >F</kbd
-          >
-        </a>
-        to that location.
+        >, otherwise we don't know it exists. We usually associate your branch
+        with the default branch. So if you use a different branch, please notify
+        us by submitting an issue.
       </p>
     </div>
   </MainLayout>
@@ -156,14 +129,6 @@ export default {
           break;
         case "d":
           document.getElementById("knausj-talon-repo-link").click();
-          break;
-        case "e":
-          document.getElementById("knausj-talon-repo-link").click();
-          break;
-        case "f":
-          document
-            .getElementById("cursorless-settings-directory-change-link")
-            .click();
           break;
         case "g":
           document.getElementById("evan-pollak-github-link").click();

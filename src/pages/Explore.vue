@@ -12,40 +12,6 @@
           </p>
         </div>
       </div>
-      <div class="tabs is-centered is-boxed">
-        <ul>
-          <li
-            v-bind:class="{
-              'is-active': activeTab === 'talon',
-            }"
-          >
-            <a v-on:click="switchActiveTab('talon')"
-              >Talon
-              <kbd
-                v-show="!hideAllhotkeys"
-                class="action-group-inherit__action-hotkey hotkey-dark"
-                title="Keyboard shortcut: f"
-                >f</kbd
-              >
-            </a>
-          </li>
-          <li
-            v-bind:class="{
-              'is-active': activeTab === 'cursorless',
-            }"
-          >
-            <a v-on:click="switchActiveTab('cursorless')"
-              >Cursorless
-              <kbd
-                v-show="!hideAllhotkeys"
-                class="action-group-inherit__action-hotkey hotkey-dark"
-                title="Keyboard shortcut: e"
-                >e</kbd
-              >
-            </a>
-          </li>
-        </ul>
-      </div>
       <div class="columns explorer-search-container">
         <div class="column is-narrow">
           <div class="field is-horizontal">
@@ -124,25 +90,16 @@ export default {
   },
   data: function () {
     return {
-      appTarget: "talon",
-      includeEmptyPhrases: false,
       fileTarget: null,
-      actionNameTarget: null,
       showModal: false,
-      hotkeyHideLevel: 0,
       spokenFormByFileUrl:
         "https://stolen-sugar.herokuapp.com/spokenform?file=",
-      spokenFormByNameUrl: "http://localhost:8080/spokenformbyname?name=",
-      activeTab: "talon",
       spokenFormGroups: {},
       contextList: [],
       state: "done",
     };
   },
   methods: {
-    switchActiveTab(app) {
-      this.activeTab = app;
-    },
     focusFileInput() {
       this.$refs.textField.focus();
       this.$root.$data.shared.hideHotKeys = true;
@@ -206,13 +163,6 @@ export default {
         case "b":
           self.searchByFile();
           break;
-        case "e":
-          self.switchActiveTab("cursorless");
-          break;
-        case "f":
-          self.switchActiveTab("talon");
-          break;
-
         default:
           break;
       }
