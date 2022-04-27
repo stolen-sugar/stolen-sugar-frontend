@@ -177,6 +177,8 @@ export default {
   mounted() {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        return;
       if (self.hideAllhotkeys) return;
       switch (event.key) {
         case "7":

@@ -86,6 +86,8 @@ export default {
   mounted() {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        return;
       if (self.hideAllhotkeys) return;
       if (event.key == 1) {
         self.goToHome();

@@ -117,6 +117,8 @@ export default {
   },
   mounted() {
     document.body.addEventListener("keyup", function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        return;
       switch (event.key) {
         case "a":
           document.getElementById("knausj-talon-repo-link").click();

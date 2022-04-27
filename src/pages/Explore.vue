@@ -155,6 +155,8 @@ export default {
   mounted() {
     var self = this;
     document.body.addEventListener("keyup", function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        return;
       if (self.$root.$data.shared.keysHidden()) return;
       switch (event.key) {
         case "a":
