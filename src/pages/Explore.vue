@@ -58,6 +58,68 @@
             >
           </button>
         </div>
+        <div class="column is-narrow">
+          <button
+            class="button is-info is-outlined"
+            ref="createFlashcards"
+            @click="getFlashcards"
+          >
+            Create Flashcards
+            <kbd
+              v-show="!hideAllhotkeys"
+              class="action-group-high__action-hotkey hotkey-dark"
+              title="Keyboard shortcut: C"
+              >C</kbd
+            >
+          </button>
+          <div
+            class="modal"
+            v-bind:class="{ 'is-active': showFlashcardsModal }"
+          >
+            <div
+              v-on:click="deactivateFlashcardsModal"
+              class="modal-background"
+            ></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">
+                  <button
+                    v-on:click="copyFlashcardsFile"
+                    class="button is-info is-large"
+                  >
+                    copy file
+                    <kbd
+                      v-show="!hideAllhotkeys"
+                      class="action-group-high__action-hotkey hotkey-dark"
+                      title="Keyboard shortcut: D"
+                      >D</kbd
+                    >
+                  </button>
+                </p>
+                <button
+                  v-on:click="deactivateFlashcardsModal"
+                  class="button is-large is-danger"
+                >
+                  close
+                  <kbd
+                    v-show="!hideAllhotkeys"
+                    class="action-group-high__action-hotkey hotkey-dark"
+                    title="Keyboard shortcut: E"
+                    >E</kbd
+                  >
+                </button>
+              </header>
+              <section class="modal-card-body" id="flashcards-file">
+                {{ flashcardsDeck }}
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="fileNotFoundMessage" class="columns is-centered">
+        <div class="column is-narrow">
+          <p class="danger-color">That file was not found.</p>
+        </div>
       </div>
     </div>
     <div>
@@ -92,14 +154,28 @@ export default {
     return {
       fileTarget: null,
       showModal: false,
+      showFlashcardsModal: false,
       spokenFormByFileUrl:
         "https://stolen-sugar.herokuapp.com/spokenform?file=",
+      flashcardsUrlBase: "https://stolen-sugar.herokuapp.com/flashcards/",
+      flashcardsDeck: {},
+      fileNotFoundMessage: false,
       spokenFormGroups: {},
       contextList: [],
       state: "done",
     };
   },
   methods: {
+    copyFlashcardsFile() {
+      let copyText = document.getElementById("flashcards-file");
+      navigator.clipboard.writeText(copyText.textContent);
+    },
+    activateFlashcardsModal() {
+      this.showFlashcardsModal = true;
+    },
+    deactivateFlashcardsModal() {
+      this.showFlashcardsModal = false;
+    },
     focusFileInput() {
       this.$refs.textField.focus();
       this.$root.$data.shared.hideHotKeys = true;
@@ -115,6 +191,40 @@ export default {
     },
     searchByFile() {
       this.$refs.searchByFile.click();
+    },
+    createFlashcards() {
+      this.$refs.createFlashcards.click();
+    },
+    getFlashcards() {
+      if (this.fileTarget === null) return;
+      this.fileNotFoundMessage = false;
+      this.state = "loading";
+      let user = this.$cookies.get("ss-id");
+      let file = `?file=${this.fileTarget}`;
+      let url = this.flashcardsUrlBase + user + file;
+      let self = this;
+      fetch(url)
+        .then(function (response) {
+          if (response.status !== 200) {
+            console.log(
+              "Looks like there was a problem. Status Code: " + response.status
+            );
+            return;
+          }
+          response.json().then(function (data) {
+            if (data["~:decks"][0]["~:cards"]["~#list"].length < 1) {
+              self.fileNotFoundMessage = true;
+            } else {
+              self.flashcardsDeck = data;
+              self.activateFlashcardsModal();
+            }
+            self.state = "done";
+          });
+        })
+        .catch(function (err) {
+          self.state = "done";
+          console.log("Fetch Error :-S", err);
+        });
     },
     getSpokenFormByFile() {
       if (this.fileTarget === null) return;
@@ -165,6 +275,15 @@ export default {
         case "b":
           self.searchByFile();
           break;
+        case "c":
+          self.createFlashcards();
+          break;
+        case "d":
+          self.copyFlashcardsFile();
+          break;
+        case "e":
+          self.deactivateFlashcardsModal();
+          break;
         default:
           break;
       }
@@ -192,5 +311,9 @@ export default {
 .field-label.is-normal {
   padding-top: 0.5em;
   min-width: 9em;
+}
+
+.danger-color {
+  color: hsl(348, 100%, 61%);
 }
 </style>
