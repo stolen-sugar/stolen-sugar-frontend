@@ -46,38 +46,11 @@
       <div class="modal-background" v-on:click="deactivateFooterModal"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Talon alphabet</p>
+          <p class="modal-card-title">Hotkeys</p>
         </header>
         <section class="modal-card-body">
-          <table
-            class="table is-striped has-text-centered is-bordered is-fullwidth"
-          >
-            <thead>
-              <tr>
-                <th>Letter</th>
-                <th>Spoken Phrase</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(value, name, index) in talonAlphabet"
-                v-bind:key="index"
-              >
-                <td>{{ name }}</td>
-                <td>{{ value }}</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Letter</th>
-                <th>Spoken Phrase</th>
-              </tr>
-            </tfoot>
-          </table>
-        </section>
-        <footer class="modal-card-foot">
-          <div class="columns">
-            <div class="column is-full">
+          <div class="columns is-centered">
+            <div class="column is-narrow">
               <button class="button is-info" v-on:click="deactivateFooterModal">
                 Close
                 <kbd
@@ -105,7 +78,8 @@
               </button>
             </div>
           </div>
-        </footer>
+        </section>
+        <footer class="modal-card-foot"></footer>
       </div>
     </div>
   </footer>
@@ -117,34 +91,6 @@ export default {
   data: function () {
     return {
       showFooterModal: false,
-      talonAlphabet: {
-        A: "Air",
-        B: "Bat",
-        C: "Cap",
-        D: "Drum",
-        E: "Each",
-        F: "Fine",
-        G: "Gust",
-        H: "Harp",
-        I: "Sit",
-        J: "Jury",
-        K: "Krunch",
-        L: "Look",
-        M: "Made",
-        N: "Near",
-        O: "Odd",
-        P: "Pit",
-        Q: "Quench",
-        R: "Red",
-        S: "Sun",
-        T: "Trap",
-        U: "Urge",
-        V: "Vest",
-        W: "Whale",
-        X: "Plex",
-        Y: "Yank",
-        Z: "Zip",
-      },
     };
   },
   methods: {
