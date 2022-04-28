@@ -61,13 +61,42 @@
           ></a
         >.
       </p>
+      <h2 class="subtitle">Flashcards</h2>
+      <p class="content">
+        You can generate flashcards that are mapped to your custom spoken
+        phrases. From the Explore tab, after you input a file path and click
+        "Create Flashcards" the app will generate json. Copy the contents of the
+        json file into a new file called: `data.json` Then compress the file and
+        change the extenstion from `.zip` to `.mochi`.
+      </p>
+      <p class="content">
+        Finally, import the file at
+        <a href="https://mochi.cards/" id="mochi-link">
+          Mochi
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: H"
+            >H
+          </kbd> </a
+        >. If necessary you can watch a demo video
+        <a
+          href="https://www.youtube.com/watch?v=9ywpvzbB6UI"
+          id="mochi-demo-link"
+        >
+          <kbd
+            v-show="!hideAllhotkeys"
+            class="hotkey-dark"
+            title="Keyboard shortcut: L"
+            >L
+          </kbd>
+          here </a
+        >.
+      </p>
       <h2 class="subtitle">Website Voice Navigation</h2>
       <p class="content">
         You can easily navigate the website with your voice by using the denoted
-        hotkeys. Each hotkey is either a number or letter. If you have not
-        mastered the talon alphabet yet, just say "seven" to look at the
-        cheatsheet. After you link your repository, the entire website,
-        including the cheatsheet, is mapped to your custom spoken phrases.
+        hotkeys. Each hotkey is either a number or letter.
       </p>
       <p class="content">
         When you focus on an input element like "File Path", hotkeys are
@@ -134,6 +163,12 @@ export default {
           break;
         case "g":
           document.getElementById("evan-pollak-github-link").click();
+          break;
+        case "h":
+          document.getElementById("mochi-link").click();
+          break;
+        case "l":
+          document.getElementById("mochi-demo-link").click();
           break;
         default:
           break;
