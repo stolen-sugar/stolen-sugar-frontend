@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered is-vcentered">
       <div class="column"></div>
       <div class="column">
         <p class="has-text has-text-centered">
