@@ -45,43 +45,9 @@ footer {
   max-height: unset;
 }
 
-kbd {
-  color: #000;
-  display: inline-block;
-  font-size: 0.85em;
-  font-weight: bold;
-  line-height: 1;
-  padding: 0.15em 0.3em;
-  text-align: center;
-  white-space: nowrap;
-  text-transform: uppercase;
-  font-family: var(--font-family--mono);
-  border-radius: 15px;
-  opacity: 0.8;
-}
-
-.action-group__action-hotkey,
-.action-group-inherit__action-hotkey {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  background: #dfdfdf;
-}
-
-.action-group-inherit__action-hotkey {
-  position: inherit;
-}
-
 #github-logo {
   height: 30px;
   width: auto;
-}
-
-.action-group-high__action-hotkey {
-  position: absolute;
-  top: 0.01em;
-  right: 0.01em;
-  background: #dfdfdf;
 }
 
 .container {

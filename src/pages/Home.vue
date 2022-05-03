@@ -7,59 +7,23 @@
       <h2 class="subtitle about">About</h2>
       <p class="content">
         We steal custom spoken phrases from the various forks of
-        <a
-          href="https://github.com/knausj85/knausj_talon"
-          id="knausj-talon-repo-link"
-          >knausj_talon
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: A"
-            >A</kbd
-          ></a
-        >
+        <a href="https://github.com/knausj85/knausj_talon">knausj_talon</a>
         and make them available to be searched by file.
       </p>
       <p class="content">
         Stolen Sugar was created by
-        <a
-          class="ss-team"
-          href="https://github.com/daslater"
-          id="david-slater-github-link"
-          >David Slater
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: B"
-            >B</kbd
-          ></a
-        >,
-        <a
-          class="ss-team"
-          href="https://github.com/EvanPollak"
-          id="evan-pollak-github-link"
-        >
+        <a class="ss-team" href="https://github.com/daslater">David Slater</a>,
+        <a class="ss-team" href="https://github.com/EvanPollak">
           Evan Pollak
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: G"
-            >g</kbd
-          >
         </a>
         and
+        <a class="ss-team" href="https://github.com/RonWalker22">Ron Walker</a>.
+        Some of the code used to extract the talon commands used Tarrays’
         <a
-          class="ss-team"
-          href="https://github.com/RonWalker22"
-          id="ronald-walker-github-link"
-          >Ron Walker
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: C"
-            >C</kbd
-          ></a
-        >.
+          href="https://gist.github.com/tararoys/7412364aff8d24a4603af9eb8fba86f5"
+          >cheatsheet</a
+        >
+        as a foundation.
       </p>
       <h2 class="subtitle">Flashcards</h2>
       <p class="content">
@@ -71,50 +35,21 @@
       </p>
       <p class="content">
         Finally, import the file at
-        <a href="https://mochi.cards/" id="mochi-link">
-          Mochi
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: H"
-            >H
-          </kbd> </a
-        >. If necessary you can watch a demo video
-        <a
-          href="https://www.youtube.com/watch?v=9ywpvzbB6UI"
-          id="mochi-demo-link"
-        >
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: L"
-            >L
-          </kbd>
-          here </a
-        >.
+        <a href="https://mochi.cards/"> Mochi </a>. If necessary you can watch a
+        demo video
+        <a href="https://www.youtube.com/watch?v=9ywpvzbB6UI"> here </a>.
       </p>
       <h2 class="subtitle">Website Voice Navigation</h2>
       <p class="content">
-        You can easily navigate the website with your voice by using the denoted
-        hotkeys. Each hotkey is either a number or letter.
-      </p>
-      <p class="content">
-        When you focus on an input element like "File Path", hotkeys are
-        temporarily disabled. Escape or tab to exit input element.
+        You can easily navigate the website with your voice by using
+        <strike>the denoted hotkeys</strike>
+        <a href="https://github.com/david-tejada/rango"> Rango</a>.
       </p>
       <h2 class="subtitle">Repository Search Area</h2>
       <p class="content">
         We expect your talon repository to be a publicly available
-        <a
-          href="https://github.com/knausj85/knausj_talon/network/members"
-          id="knausj-talon-repo-link"
-          >knausj_talon fork
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="hotkey-dark"
-            title="Keyboard shortcut: D"
-            >D
-          </kbd> </a
+        <a href="https://github.com/knausj85/knausj_talon/network/members"
+          >knausj_talon fork </a
         >, otherwise we don't know it exists. We usually associate your branch
         with the default branch. So if you use a different branch, please notify
         us by submitting an issue.
@@ -130,50 +65,6 @@ export default {
   name: "HelloWorld",
   components: {
     MainLayout,
-  },
-  methods: {
-    setCookie() {
-      this.$cookies.set("ss-id", "gowtham");
-    },
-  },
-  computed: {
-    hideAllhotkeys() {
-      return (
-        this.$root.$data.shared.keysHidden() ||
-        this.$cookies.isKey("hideAllHotkeys")
-      );
-    },
-  },
-  mounted() {
-    document.body.addEventListener("keyup", function (event) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return;
-      switch (event.key) {
-        case "a":
-          document.getElementById("knausj-talon-repo-link").click();
-          break;
-        case "b":
-          document.getElementById("david-slater-github-link").click();
-          break;
-        case "c":
-          document.getElementById("ronald-walker-github-link").click();
-          break;
-        case "d":
-          document.getElementById("knausj-talon-repo-link").click();
-          break;
-        case "g":
-          document.getElementById("evan-pollak-github-link").click();
-          break;
-        case "h":
-          document.getElementById("mochi-link").click();
-          break;
-        case "l":
-          document.getElementById("mochi-demo-link").click();
-          break;
-        default:
-          break;
-      }
-    });
   },
 };
 </script>

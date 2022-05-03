@@ -7,12 +7,6 @@
           @click="getIds"
         >
           Link knausj_talon fork
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="action-group-high__action-hotkey hotkey-dark"
-            title="Keyboard shortcut: G"
-            >G</kbd
-          >
         </button>
       </div>
       <div class="column is-narrow">
@@ -21,12 +15,6 @@
           @click="useKnausjTalon"
         >
           Use default knausj_talon
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="action-group-high__action-hotkey hotkey-dark"
-            title="Keyboard shortcut: M"
-            >M</kbd
-          >
         </button>
       </div>
     </div>
@@ -43,18 +31,9 @@
                   class="input"
                   type="text"
                   placeholder="knausj85"
-                  ref="textNameField"
-                  @focusout="enableHotkeys()"
-                  @focus="disableHotkeys()"
                   tabindex="0"
                   v-model="userName"
                 />
-                <kbd
-                  v-show="!hideAllhotkeys"
-                  class="action-group__action-hotkey hotkey-dark"
-                  title="Keyboard shortcut: H"
-                  >H</kbd
-                >
               </p>
             </div>
           </div>
@@ -63,15 +42,8 @@
       <div class="column is-narrow">
         <button class="button is-info is-outlined" @click="linkUserRepo">
           search users
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="action-group-high__action-hotkey hotkey-dark"
-            title="Keyboard shortcut: L"
-            >L</kbd
-          >
         </button>
       </div>
-      <div></div>
     </div>
     <div class="columns is-centered">
       <div class="column is-narrow">
@@ -109,14 +81,6 @@ export default {
       searchResultMessage: "",
     };
   },
-  computed: {
-    hideAllhotkeys() {
-      return (
-        this.$root.$data.shared.keysHidden() ||
-        this.$cookies.isKey("hideAllHotkeys")
-      );
-    },
-  },
   methods: {
     useKnausjTalon() {
       this.userName = "knausj85";
@@ -140,13 +104,6 @@ export default {
           this.userName +
           " was not found to have a public fork of knausj_talon.";
       }
-    },
-    disableHotkeys() {
-      this.searchResultMessage = "";
-      this.$root.$data.shared.hideHotKeys = true;
-    },
-    enableHotkeys() {
-      this.$root.$data.shared.hideHotKeys = false;
     },
     getIds() {
       this.state = "loading";
@@ -173,34 +130,6 @@ export default {
           console.log("Fetch Error :-S", err);
         });
     },
-    focusUsernameInput() {
-      this.$refs.textNameField.focus();
-      this.$root.$data.shared.hideHotKeys = true;
-    },
-  },
-  mounted() {
-    var self = this;
-    document.body.addEventListener("keyup", function (event) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return;
-      if (self.$root.$data.shared.keysHidden()) return;
-      switch (event.key) {
-        case "g":
-          self.getIds();
-          break;
-        case "m":
-          self.useKnausjTalon();
-          break;
-        case "h":
-          self.focusUsernameInput();
-          break;
-        case "l":
-          self.linkUserRepo();
-          break;
-        default:
-          break;
-      }
-    });
   },
 };
 </script>

@@ -17,12 +17,6 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-        <kbd
-          v-show="!hideAllhotkeys"
-          class="action-group-high__action-hotkey"
-          title="Keyboard shortcut: 3"
-          >3</kbd
-        >
       </a>
     </div>
 
@@ -32,24 +26,9 @@
       v-bind:class="{ 'is-active': burgerActive }"
     >
       <div class="navbar-start">
-        <a href="/" class="navbar-item" id="home-page-link">
-          Home
-
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="action-group__action-hotkey"
-            title="Keyboard shortcut: 1"
-            >1</kbd
-          >
-        </a>
+        <a href="/" class="navbar-item" id="home-page-link"> Home </a>
         <a href="explore" class="navbar-item" id="explore-page-link">
           Explore
-          <kbd
-            v-show="!hideAllhotkeys"
-            class="action-group__action-hotkey"
-            title="Keyboard shortcut: 2"
-            >2</kbd
-          >
         </a>
       </div>
     </div>
@@ -74,29 +53,6 @@ export default {
     goToExplore() {
       document.getElementById("explore-page-link").click();
     },
-  },
-  computed: {
-    hideAllhotkeys() {
-      return (
-        this.$root.$data.shared.keysHidden() ||
-        this.$cookies.isKey("hideAllHotkeys")
-      );
-    },
-  },
-  mounted() {
-    var self = this;
-    document.body.addEventListener("keyup", function (event) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return;
-      if (self.hideAllhotkeys) return;
-      if (event.key == 1) {
-        self.goToHome();
-      } else if (event.key == 2) {
-        self.goToExplore();
-      } else if (event.key == 3) {
-        self.toggleBurger();
-      }
-    });
   },
 };
 </script>

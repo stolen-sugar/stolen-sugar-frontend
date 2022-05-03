@@ -14,14 +14,6 @@ const routes = {
   "/explore": ExploreAlternatives,
 };
 
-const shared = {
-  hideHotKeys: false,
-  keysHidden() {
-    return this.hideHotKeys;
-  },
-  activeGroup: null,
-};
-
 Vue.use(VueCookies);
 Vue.$cookies.config("30d");
 
@@ -29,7 +21,6 @@ new Vue({
   el: "#app",
   data: {
     currentRoute: window.location.pathname,
-    shared,
   },
   components: {
     PulseLoader,

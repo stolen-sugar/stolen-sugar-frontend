@@ -25,18 +25,9 @@
                     class="input"
                     type="text"
                     placeholder="code/keys.py"
-                    ref="textField"
-                    @focusout="enableHotkeys()"
-                    @focus="disableHotkeys()"
                     tabindex="0"
                     v-model="fileTarget"
                   />
-                  <kbd
-                    v-show="!hideAllhotkeys"
-                    class="action-group__action-hotkey hotkey-dark"
-                    title="Keyboard shortcut: A"
-                    >A</kbd
-                  >
                 </p>
               </div>
             </div>
@@ -45,32 +36,14 @@
         <div class="column">
           <button
             class="button is-info is-outlined"
-            ref="searchByFile"
             @click="getSpokenFormByFile"
           >
             search
-
-            <kbd
-              v-show="!hideAllhotkeys"
-              class="action-group-high__action-hotkey hotkey-dark"
-              title="Keyboard shortcut: B"
-              >B</kbd
-            >
           </button>
         </div>
         <div class="column is-narrow">
-          <button
-            class="button is-info is-outlined"
-            ref="createFlashcards"
-            @click="getFlashcards"
-          >
+          <button class="button is-info is-outlined" @click="getFlashcards">
             Create Flashcards
-            <kbd
-              v-show="!hideAllhotkeys"
-              class="action-group-high__action-hotkey hotkey-dark"
-              title="Keyboard shortcut: C"
-              >C</kbd
-            >
           </button>
           <div
             class="modal"
@@ -88,12 +61,6 @@
                     class="button is-info is-large"
                   >
                     copy file
-                    <kbd
-                      v-show="!hideAllhotkeys"
-                      class="action-group-high__action-hotkey hotkey-dark"
-                      title="Keyboard shortcut: D"
-                      >D</kbd
-                    >
                   </button>
                 </p>
                 <button
@@ -101,12 +68,6 @@
                   class="button is-large is-danger"
                 >
                   close
-                  <kbd
-                    v-show="!hideAllhotkeys"
-                    class="action-group-high__action-hotkey hotkey-dark"
-                    title="Keyboard shortcut: E"
-                    >E</kbd
-                  >
                 </button>
               </header>
               <section class="modal-card-body" id="flashcards-file">
@@ -176,16 +137,6 @@ export default {
     deactivateFlashcardsModal() {
       this.showFlashcardsModal = false;
     },
-    focusFileInput() {
-      this.$refs.textField.focus();
-      this.$root.$data.shared.hideHotKeys = true;
-    },
-    disableHotkeys() {
-      this.$root.$data.shared.hideHotKeys = true;
-    },
-    enableHotkeys() {
-      this.$root.$data.shared.hideHotKeys = false;
-    },
     toggleEmptyPhrases() {
       this.$refs.emptyPhrases.click();
     },
@@ -254,41 +205,6 @@ export default {
         });
     },
   },
-  computed: {
-    hideAllhotkeys() {
-      return (
-        this.$root.$data.shared.keysHidden() ||
-        this.$cookies.isKey("hideAllHotkeys")
-      );
-    },
-  },
-  mounted() {
-    var self = this;
-    document.body.addEventListener("keyup", function (event) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return;
-      if (self.$root.$data.shared.keysHidden()) return;
-      switch (event.key) {
-        case "a":
-          self.focusFileInput(self);
-          break;
-        case "b":
-          self.searchByFile();
-          break;
-        case "c":
-          self.createFlashcards();
-          break;
-        case "d":
-          self.copyFlashcardsFile();
-          break;
-        case "e":
-          self.deactivateFlashcardsModal();
-          break;
-        default:
-          break;
-      }
-    });
-  },
 };
 </script>
 
@@ -301,11 +217,6 @@ export default {
 }
 .file-label {
   min-width: 5em;
-}
-
-.hotkey-dark {
-  background: #e8e8e8 !important;
-  color: #000;
 }
 
 .field-label.is-normal {
